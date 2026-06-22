@@ -1,6 +1,6 @@
-# Screenshots and reference images
-*.png
-!zoloto-logo-2a.png
+# Screenshots and reference images (root level only)
+/*.png
+!/zoloto-logo-2a.png
 
 # PDFs
 *.pdf
