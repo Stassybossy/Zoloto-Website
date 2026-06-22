@@ -1,0 +1,16 @@
+# Screenshots and reference images
+*.png
+!zoloto-logo-2a.png
+
+# PDFs
+*.pdf
+
+# Design system drafts
+Zoloto_Design_System.html
+ss_helper_*.html
+
+# Claude Code
+.claude/
+
+# Temp screenshot folder
+temporary screenshots/
