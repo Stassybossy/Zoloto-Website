@@ -244,6 +244,20 @@ body{background:var(--black);color:var(--warm-white);font-family:-apple-system,'
 .footer-phone{font-size:12px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase}
 .footer-phone a{color:var(--gold);text-decoration:none}
 
+/* MOBILE FORM POPUP */
+.mob-overlay{position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,.86);display:flex;align-items:flex-end;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px)}
+.mob-overlay.open{opacity:1;pointer-events:all}
+.mob-sheet{background:#1a1714;border:1px solid rgba(201,168,76,.32);border-radius:18px 18px 0 0;width:100%;max-width:560px;max-height:92vh;overflow-y:auto;transform:translateY(100%);transition:transform .38s cubic-bezier(.22,1,.36,1);-webkit-overflow-scrolling:touch;padding-bottom:max(env(safe-area-inset-bottom,16px),16px)}
+.mob-overlay.open .mob-sheet{transform:translateY(0)}
+.mob-handle{width:38px;height:4px;background:var(--border);border-radius:4px;margin:14px auto 0}
+.mob-head{padding:14px 22px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px}
+.mob-head-title{font-family:Georgia,serif;font-size:17px;color:var(--gold);letter-spacing:1.5px}
+.mob-head-sub{font-size:10px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-top:1px}
+.mob-head-close{background:none;border:none;color:var(--muted);font-size:24px;cursor:pointer;padding:0;line-height:1;flex-shrink:0;transition:color .2s}
+.mob-head-close:hover,.mob-head-close:active{color:var(--warm-white)}
+.mob-body{padding:16px 22px 6px}
+.mob-skip{display:block;text-align:center;font-size:11px;color:var(--deep-muted);letter-spacing:1px;margin:10px 0 8px;cursor:pointer;background:none;border:none;width:100%;font-family:inherit;text-decoration:underline;text-underline-offset:3px;padding:6px 0}
+
 /* SCROLL TOP */
 .scroll-top{position:fixed;bottom:28px;right:28px;width:46px;height:46px;background:var(--gold);color:var(--black);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;opacity:0;pointer-events:none;transition:opacity .3s,background .2s;z-index:500;border-radius:2px}
 .scroll-top.visible{opacity:1;pointer-events:all}
@@ -495,8 +509,58 @@ body{background:var(--black);color:var(--warm-white);font-family:-apple-system,'
     </div>
     <div class="map-grid reveal">
       <div>
-        <div class="map-iframe-wrap">
-          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-79.25%2C42.85%2C-78.50%2C43.30&amp;layer=mapnik&amp;marker=43.0392%2C-78.8642" loading="lazy" title="Zoloto Home Services service area map — North Tonawanda NY"></iframe>
+        <div style="border:1px solid rgba(201,168,76,.22);border-radius:4px;overflow:hidden;">
+          <svg viewBox="0 0 560 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;background:#0d0c09;" role="img" aria-label="Service area map — North Tonawanda and Western New York">
+            <!-- Grid -->
+            <g stroke="#171410" stroke-width="1">
+              <line x1="140" y1="0" x2="140" y2="400"/><line x1="280" y1="0" x2="280" y2="400"/><line x1="420" y1="0" x2="420" y2="400"/>
+              <line x1="0" y1="133" x2="560" y2="133"/><line x1="0" y1="267" x2="560" y2="267"/>
+            </g>
+            <!-- Lake Ontario (top) -->
+            <path d="M0,0 L560,0 L560,76 Q440,62 310,69 Q180,76 65,67 Q28,60 0,69 Z" fill="#071523"/>
+            <text x="110" y="42" text-anchor="middle" font-size="7.5" fill="#122030" font-family="'Segoe UI',Arial,sans-serif" letter-spacing="3">LAKE ONTARIO</text>
+            <!-- Lake Erie (bottom-left corner) -->
+            <path d="M0,342 Q20,328 50,335 Q80,350 98,372 Q52,390 0,400 Z" fill="#071523"/>
+            <!-- Niagara River (left strip) -->
+            <path d="M0,69 Q18,72 38,72 Q52,78 56,108 Q60,148 54,188 Q48,225 56,260 Q66,296 80,322 Q90,342 98,372 Q80,350 50,335 Q20,328 0,342 Z" fill="#071523" opacity="0.75"/>
+            <!-- Service area glow -->
+            <ellipse cx="290" cy="207" rx="318" ry="178" fill="#C9A84C" opacity="0.025"/>
+            <!-- Service radius dashed ring -->
+            <ellipse cx="290" cy="207" rx="318" ry="178" fill="none" stroke="#C9A84C" stroke-width="1.5" stroke-dasharray="7,5" opacity="0.38"/>
+            <!-- 25 mi label -->
+            <text x="290" y="28" text-anchor="middle" font-size="7" fill="#7A602A" font-family="'Segoe UI',Arial,sans-serif" letter-spacing="2.5">— 25 MI SERVICE RADIUS —</text>
+            <!-- NT home base -->
+            <circle cx="290" cy="207" r="13" fill="#C9A84C" opacity="0.1"/>
+            <circle cx="290" cy="207" r="7" fill="#C9A84C"/>
+            <circle cx="290" cy="207" r="2.8" fill="#0d0c09"/>
+            <text x="290" y="193" text-anchor="middle" font-size="8.5" fill="#C9A84C" font-family="Georgia,serif" letter-spacing="0.5" font-weight="bold">N. TONAWANDA</text>
+            <text x="290" y="184" text-anchor="middle" font-size="6.5" fill="#9A7B2F" font-family="'Segoe UI',Arial,sans-serif" letter-spacing="1">★ HOME BASE</text>
+            <!-- City dots -->
+            <circle cx="158" cy="176" r="3.5" fill="#B0A888" opacity="0.8"/>
+            <text x="150" y="179" text-anchor="end" font-size="7.5" fill="#7A7460" font-family="'Segoe UI',Arial,sans-serif">Niagara Falls</text>
+            <circle cx="401" cy="141" r="3.5" fill="#B0A888" opacity="0.8"/>
+            <text x="409" y="144" text-anchor="start" font-size="7.5" fill="#7A7460" font-family="'Segoe UI',Arial,sans-serif">Lockport</text>
+            <circle cx="342" cy="181" r="3.5" fill="#B0A888" opacity="0.8"/>
+            <text x="350" y="178" text-anchor="start" font-size="7.5" fill="#7A7460" font-family="'Segoe UI',Arial,sans-serif">Pendleton</text>
+            <circle cx="316" cy="176" r="3.5" fill="#B0A888" opacity="0.8"/>
+            <text x="308" y="170" text-anchor="end" font-size="7.5" fill="#7A7460" font-family="'Segoe UI',Arial,sans-serif">Wheatfield</text>
+            <circle cx="217" cy="216" r="3.5" fill="#B0A888" opacity="0.8"/>
+            <text x="217" y="231" text-anchor="middle" font-size="7.5" fill="#7A7460" font-family="'Segoe UI',Arial,sans-serif">Grand Island</text>
+            <circle cx="279" cy="238" r="3.5" fill="#B0A888" opacity="0.8"/>
+            <text x="269" y="252" text-anchor="end" font-size="7.5" fill="#7A7460" font-family="'Segoe UI',Arial,sans-serif">Kenmore / Tonawanda</text>
+            <circle cx="329" cy="236" r="3.5" fill="#B0A888" opacity="0.8"/>
+            <text x="337" y="233" text-anchor="start" font-size="7.5" fill="#7A7460" font-family="'Segoe UI',Arial,sans-serif">Amherst</text>
+            <circle cx="369" cy="246" r="3.5" fill="#B0A888" opacity="0.8"/>
+            <text x="377" y="249" text-anchor="start" font-size="7.5" fill="#7A7460" font-family="'Segoe UI',Arial,sans-serif">Williamsville</text>
+            <circle cx="362" cy="280" r="3.5" fill="#B0A888" opacity="0.8"/>
+            <text x="370" y="284" text-anchor="start" font-size="7.5" fill="#7A7460" font-family="'Segoe UI',Arial,sans-serif">Cheektowaga</text>
+            <circle cx="329" cy="301" r="3.5" fill="#B0A888" opacity="0.8"/>
+            <text x="337" y="307" text-anchor="start" font-size="7.5" fill="#7A7460" font-family="'Segoe UI',Arial,sans-serif">West Seneca</text>
+            <!-- Compass -->
+            <text x="530" y="362" text-anchor="middle" font-size="11" fill="#2a2418" font-family="Georgia,serif" font-weight="bold">N</text>
+            <line x1="530" y1="366" x2="530" y2="378" stroke="#2a2418" stroke-width="1.5"/>
+            <polygon points="526,366 530,356 534,366" fill="#2a2418"/>
+          </svg>
         </div>
       </div>
       <div>
@@ -615,6 +679,39 @@ body{background:var(--black);color:var(--warm-white);font-family:-apple-system,'
 
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
+<!-- MOBILE POPUP FORM (shown on phones only, once per session) -->
+<div class="mob-overlay" id="mobOverlay" role="dialog" aria-modal="true" aria-label="Get a Free Quote">
+  <div class="mob-sheet" id="mobSheet">
+    <div class="mob-handle"></div>
+    <div class="mob-head">
+      <div><div class="mob-head-title">Get a Free Quote</div><div class="mob-head-sub">Response within 2 hours · No obligation</div></div>
+      <button class="mob-head-close" onclick="closeMobPopup()" aria-label="Close">✕</button>
+    </div>
+    <div class="mob-body">
+      <form id="mobForm" onsubmit="handleMobSubmit(event)" novalidate>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">First Name</label><input type="text" id="m_first" name="first_name" class="form-input" placeholder="John"><span class="form-error-msg" id="m_err_first">Required</span></div>
+          <div class="form-group"><label class="form-label">Last Name</label><input type="text" id="m_last" name="last_name" class="form-input" placeholder="Smith"><span class="form-error-msg" id="m_err_last">Required</span></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label class="form-label">Phone</label><input type="tel" id="m_phone" name="phone" class="form-input" placeholder="716-555-0000"><span class="form-error-msg" id="m_err_phone">Required</span></div>
+          <div class="form-group"><label class="form-label">Email</label><input type="email" id="m_email" name="email" class="form-input" placeholder="you@email.com"><span class="form-error-msg" id="m_err_email">Valid email required</span></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Service Needed</label>
+          <select id="m_service" name="service" class="form-select"><option value="" disabled selected>Select a service...</option><option>Drywall Repair</option><option>Pressure Washing</option><option>Interior Painting/Staining</option><option>Exterior Painting/Staining</option><option>Landscaping</option><option>Honey-Do List</option><option>Furniture Assembly</option><option>General Repairs</option><option>Multiple / Other</option></select>
+          <span class="form-error-msg" id="m_err_service">Please select a service</span>
+        </div>
+        <div class="form-group"><label class="form-label">Project Details</label><textarea id="m_details" name="details" class="form-textarea" placeholder="Describe the job — size, location, timeline..."></textarea><span class="form-error-msg" id="m_err_details">Please describe your project</span></div>
+        <button type="submit" class="form-submit" id="m_submitBtn">Send Request →</button>
+        <div class="form-success" id="m_formSuccess">✓ &nbsp;Request received — Stas will be in touch within 2 hours.</div>
+        <p class="form-note">Or call/text: <a href="tel:7169307767">716-930-7767</a> · Mon–Sat 7am–7pm</p>
+      </form>
+      <button class="mob-skip" onclick="closeMobPopup()">Skip for now</button>
+    </div>
+  </div>
+</div>
+
 <script>
 const galleryImages=[
   'attachments/IMG_1717.jpeg','attachments/IMG_1720.jpeg','attachments/IMG_1756.jpeg',
@@ -668,6 +765,26 @@ function validateField(fieldId,errId,checkFn){const field=document.getElementByI
 function clearError(fieldId,errId){document.getElementById(fieldId).classList.remove('error');document.getElementById(errId).classList.remove('show')}
 ['field_first','field_last','field_phone','field_email','field_details'].forEach(id=>{const errId=id.replace('field_','err_');document.getElementById(id).addEventListener('input',()=>clearError(id,errId))});
 document.getElementById('serviceSelect').addEventListener('change',()=>clearError('serviceSelect','err_service'));
+
+function closeMobPopup(){document.getElementById('mobOverlay').classList.remove('open');sessionStorage.setItem('zolotoPopup','1')}
+document.getElementById('mobOverlay').addEventListener('click',function(e){if(e.target===this)closeMobPopup()});
+if(window.innerWidth<768&&!sessionStorage.getItem('zolotoPopup')){setTimeout(()=>document.getElementById('mobOverlay').classList.add('open'),900)}
+
+function mValidate(id,errId,fn){const f=document.getElementById(id),e=document.getElementById(errId),ok=fn(f.value.trim());f.classList.toggle('error',!ok);e.classList.toggle('show',!ok);return ok}
+function mClear(id,errId){document.getElementById(id).classList.remove('error');document.getElementById(errId).classList.remove('show')}
+['m_first','m_last','m_phone','m_email','m_details'].forEach(id=>{const e='m_err_'+id.slice(2);document.getElementById(id).addEventListener('input',()=>mClear(id,e))});
+document.getElementById('m_service').addEventListener('change',()=>mClear('m_service','m_err_service'));
+async function handleMobSubmit(e){
+  e.preventDefault();
+  const emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const ok=[mValidate('m_first','m_err_first',v=>v.length>0),mValidate('m_last','m_err_last',v=>v.length>0),mValidate('m_phone','m_err_phone',v=>v.length>6),mValidate('m_email','m_err_email',v=>emailRe.test(v)),mValidate('m_service','m_err_service',v=>v.length>0),mValidate('m_details','m_err_details',v=>v.length>0)].every(Boolean);
+  if(!ok)return;
+  const btn=document.getElementById('m_submitBtn');btn.disabled=true;btn.textContent='Sending...';
+  try{const res=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({access_key:'f628206a-08c3-456e-a18e-8338da20445a',subject:'New Quote Request (Mobile Popup) — Zoloto Home Services',from_name:document.getElementById('m_first').value.trim()+' '+document.getElementById('m_last').value.trim(),email:document.getElementById('m_email').value.trim(),phone:document.getElementById('m_phone').value.trim(),service:document.getElementById('m_service').value,message:document.getElementById('m_details').value.trim()})});
+  const data=await res.json();
+  if(data.success){btn.textContent='✓ Sent!';document.getElementById('m_formSuccess').style.display='block';document.getElementById('mobForm').reset();sessionStorage.setItem('zolotoPopup','1');setTimeout(()=>closeMobPopup(),2800)}else{throw new Error}}
+  catch{btn.disabled=false;btn.textContent='Send Request →';alert('Something went wrong. Please call 716-930-7767')}
+}
 
 async function handleSubmit(e){
   e.preventDefault();
