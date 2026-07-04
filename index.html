@@ -13,10 +13,12 @@
 <meta name="geo.region" content="US-NY">
 <meta name="geo.placename" content="North Tonawanda, NY">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","name":"Zoloto Handyman Service","description":"Professional handyman services in North Tonawanda and Western New York. Drywall repair, painting, pressure washing, landscaping and more.","url":"https://www.zolotoservices.com","telephone":"+17169307767","email":"zolotohomeservices@gmail.com","address":{"@type":"PostalAddress","addressLocality":"North Tonawanda","addressRegion":"NY","postalCode":"14120","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":43.0392,"longitude":-78.8642},"areaServed":["North Tonawanda","Tonawanda","Grand Island","Kenmore","Amherst","Niagara Falls","Lockport","Cheektowaga","West Seneca","Williamsville","Wheatfield","Pendleton"],"priceRange":"$$","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"07:00","closes":"19:00"}],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Handyman Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Drywall Repair","url":"https://www.zolotoservices.com/drywall-repair.html"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Pressure Washing","url":"https://www.zolotoservices.com/pressure-washing.html"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Interior Painting","url":"https://www.zolotoservices.com/interior-painting.html"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Exterior Painting","url":"https://www.zolotoservices.com/exterior-painting.html"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Landscaping","url":"https://www.zolotoservices.com/landscaping.html"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Furniture Assembly","url":"https://www.zolotoservices.com/furniture-assembly.html"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"General Repairs","url":"https://www.zolotoservices.com/general-repairs.html"}}]}}
+{"@context":"https://schema.org","@type":"HomeAndConstructionBusiness","name":"Zoloto Handyman Service","description":"Professional handyman services in North Tonawanda and Western New York. Drywall repair, painting, pressure washing, landscaping and more.","url":"https://www.zolotoservices.com","telephone":"+17169307767","email":"zolotohomeservices@gmail.com","address":{"@type":"PostalAddress","addressLocality":"North Tonawanda","addressRegion":"NY","postalCode":"14120","addressCountry":"US"},"geo":{"@type":"GeoCoordinates","latitude":43.0392,"longitude":-78.8642},"areaServed":["North Tonawanda","Tonawanda","Grand Island","Kenmore","Amherst","Niagara Falls","Lockport","Cheektowaga","Buffalo","Williamsville","Wheatfield","Pendleton"],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"18","bestRating":"5"},"priceRange":"$$","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"07:00","closes":"19:00"}],"hasOfferCatalog":{"@type":"OfferCatalog","name":"Handyman Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Drywall Repair","url":"https://www.zolotoservices.com/drywall-repair.html"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Pressure Washing","url":"https://www.zolotoservices.com/pressure-washing.html"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Interior Painting","url":"https://www.zolotoservices.com/interior-painting.html"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Exterior Painting","url":"https://www.zolotoservices.com/exterior-painting.html"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Landscaping","url":"https://www.zolotoservices.com/landscaping.html"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Furniture Assembly","url":"https://www.zolotoservices.com/furniture-assembly.html"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"General Repairs","url":"https://www.zolotoservices.com/general-repairs.html"}}]}}
 </script>
 <link rel="icon" href="zoloto-handyman.png" type="image/png">
-<meta property="og:image" content="https://www.zolotoservices.com/zoloto-logo-2a.png">
+<meta property="og:image" content="https://www.zolotoservices.com/zoloto-handyman.png">
+<link rel="preconnect" href="https://api.web3forms.com">
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
 <style>
@@ -337,6 +339,7 @@ body{background:var(--black);color:var(--warm-white);font-family:-apple-system,'
       <li><a href="#service-area">Service Area</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <a href="sms:7169307767" class="nav-cta" style="background:transparent;border:1.5px solid var(--gold);color:var(--gold);margin-right:8px;" aria-label="Text us">Text Us</a>
     <a href="tel:7169307767" class="nav-cta">Call 716-930-7767</a>
     <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
@@ -420,6 +423,22 @@ body{background:var(--black);color:var(--warm-white);font-family:-apple-system,'
           <label class="form-label">Project Details</label>
           <textarea name="details" id="field_details" class="form-textarea" placeholder="Describe the job — size, location, timeline..."></textarea>
           <span class="form-error-msg" id="err_details">Please describe your project</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">How Did You Hear About Us?</label>
+          <select id="field_source" name="source" class="form-select">
+            <option value="" disabled selected>Select one...</option>
+            <option>Google Search</option>
+            <option>Google Maps</option>
+            <option>Thumbtack</option>
+            <option>Facebook</option>
+            <option>Instagram</option>
+            <option>Nextdoor</option>
+            <option>Yard Sign / Door Hanger</option>
+            <option>Friend / Neighbor Referral</option>
+            <option>Repeat Customer</option>
+            <option>Other</option>
+          </select>
         </div>
         <button type="submit" class="form-submit" id="submitBtn">Send Request →</button>
         <div class="form-success" id="formSuccess">✓ &nbsp;Request received — Stas will be in touch within 2 hours.</div>
@@ -518,7 +537,6 @@ body{background:var(--black);color:var(--warm-white);font-family:-apple-system,'
       <a href="https://www.google.com/maps/place/Zoloto+Handyman+Service/@43.0100983,-79.033687,11z/data=!3m1!4b1!4m6!3m5!1s0xfe0188cdb8e7a49:0xd7c5a5c51ad47e39!8m2!3d43.0099655!4d-78.868881!16s%2Fg%2F11z9bwdt4h" target="_blank" rel="noopener" class="social-icon google" title="Google Reviews"><svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="currentColor"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="currentColor"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="currentColor"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="currentColor"/></svg></a>
       <a href="https://www.facebook.com/profile.php?id=61577594837845" target="_blank" rel="noopener" class="social-icon facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
       <a href="https://www.instagram.com/zolotohandyman/" target="_blank" rel="noopener" class="social-icon instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="#" class="social-icon nextdoor" title="Nextdoor"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm-1 14H9V9h2v7zm4 0h-2V9h2v7z"/></svg></a>
       <a href="https://www.thumbtack.com/ny/sanborn/handyman/zoloto-home-services/service/581729542708084736" target="_blank" rel="noopener" class="social-icon thumbtack" title="Thumbtack"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 4v6l2 3v1h-6v6l-1 1-1-1v-6H5v-1l2-3V4H6V2h12v2h-1z"/></svg></a>
     </div>
   </div>
@@ -531,7 +549,7 @@ body{background:var(--black);color:var(--warm-white);font-family:-apple-system,'
       <div class="section-eyebrow">Verified Customer Reviews</div>
       <h2 class="section-title">What Homeowners Say</h2>
       <div class="reviews-headline-stars">★★★★★</div>
-      <div class="reviews-count">4.8 out of 5 · 12+ verified reviews across Google &amp; Thumbtack</div>
+      <div class="reviews-count">4.8 out of 5 · 18+ verified reviews across Google &amp; Thumbtack</div>
     </div>
     <div class="reviews-grid">
       <div class="review-card reveal d1">
@@ -623,7 +641,7 @@ body{background:var(--black);color:var(--warm-white);font-family:-apple-system,'
           </div>
           <div class="contact-info-row">
             <div class="contact-info-label">Service Area</div>
-            <div class="contact-info-val"><strong>North Tonawanda &amp; Western New York</strong><br>Niagara Falls, Tonawanda, Amherst, Grand Island, Kenmore, Cheektowaga, West Seneca &amp; surrounding areas.</div>
+            <div class="contact-info-val"><strong>North Tonawanda &amp; Western New York</strong><br>Niagara Falls, Tonawanda, Amherst, Grand Island, Kenmore, Cheektowaga, Buffalo &amp; surrounding areas.</div>
           </div>
           <div class="contact-info-row">
             <div class="contact-info-label">Availability</div>
@@ -659,7 +677,6 @@ body{background:var(--black);color:var(--warm-white);font-family:-apple-system,'
           <a href="#" class="footer-social-icon google" title="Google Reviews"><svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="currentColor"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="currentColor"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="currentColor"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="currentColor"/></svg></a>
           <a href="https://www.facebook.com/profile.php?id=61577594837845" target="_blank" rel="noopener" class="footer-social-icon facebook" title="Facebook"><i class="fab fa-facebook-f"></i></a>
           <a href="https://www.instagram.com/zolotohandyman/" target="_blank" rel="noopener" class="footer-social-icon instagram" title="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="footer-social-icon nextdoor" title="Nextdoor"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm-1 14H9V9h2v7zm4 0h-2V9h2v7z"/></svg></a>
           <a href="https://www.thumbtack.com/ny/sanborn/handyman/zoloto-home-services/service/581729542708084736" target="_blank" rel="noopener" class="footer-social-icon thumbtack" title="Thumbtack"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17 4v6l2 3v1h-6v6l-1 1-1-1v-6H5v-1l2-3V4H6V2h12v2h-1z"/></svg></a>
         </div>
       </div>
@@ -696,7 +713,7 @@ body{background:var(--black);color:var(--warm-white);font-family:-apple-system,'
 
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="" defer></script>
 <script>
 (function(){
   const map=L.map('serviceAreaMap',{zoomControl:true,scrollWheelZoom:false,attributionControl:true}).setView([43.04,-78.88],10);
@@ -843,7 +860,8 @@ async function handleSubmit(e){
   const btn=document.getElementById('submitBtn');
   btn.disabled=true;btn.textContent='Sending...';
   try{
-    const res=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({access_key:'f628206a-08c3-456e-a18e-8338da20445a',subject:'New Quote Request — Zoloto Handyman Service',from_name:document.getElementById('field_first').value.trim()+' '+document.getElementById('field_last').value.trim(),email:document.getElementById('field_email').value.trim(),phone:document.getElementById('field_phone').value.trim(),service:document.getElementById('serviceSelect').value,message:document.getElementById('field_details').value.trim()})});
+    const sourceEl=document.getElementById('field_source');
+    const res=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({access_key:'f628206a-08c3-456e-a18e-8338da20445a',subject:'New Quote Request — Zoloto Handyman Service',from_name:document.getElementById('field_first').value.trim()+' '+document.getElementById('field_last').value.trim(),email:document.getElementById('field_email').value.trim(),phone:document.getElementById('field_phone').value.trim(),service:document.getElementById('serviceSelect').value,message:document.getElementById('field_details').value.trim(),source:sourceEl?sourceEl.value:''})});
     const data=await res.json();
     if(data.success){btn.textContent='✓ Sent!';document.getElementById('formSuccess').style.display='block';e.target.reset()}else{throw new Error('Failed')}
   }catch{btn.disabled=false;btn.textContent='Send Request →';alert('Something went wrong. Please call us at 716-930-7767 or email zolotohomeservices@gmail.com')}
