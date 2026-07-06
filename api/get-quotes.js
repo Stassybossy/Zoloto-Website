@@ -6,7 +6,8 @@ export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Headers", "x-api-key");
   if (req.method === "OPTIONS") return res.status(200).end();
 
-  if ((req.headers["x-api-key"] || "") !== process.env.CRM_SYNC_KEY || !process.env.CRM_SYNC_KEY) {
+  const key = req.headers["x-api-key"] || new URL(req.url, "https://x").searchParams.get("key") || "";
+  if (key !== process.env.CRM_SYNC_KEY || !process.env.CRM_SYNC_KEY) {
     return res.status(401).json({ error: "unauthorized" });
   }
 
