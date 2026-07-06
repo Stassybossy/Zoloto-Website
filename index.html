@@ -824,6 +824,8 @@ function validateField(fieldId,errId,checkFn){const field=document.getElementByI
 function clearError(fieldId,errId){document.getElementById(fieldId).classList.remove('error');document.getElementById(errId).classList.remove('show')}
 ['field_first','field_last','field_phone','field_email','field_details'].forEach(id=>{const errId=id.replace('field_','err_');document.getElementById(id).addEventListener('input',()=>clearError(id,errId))});
 document.getElementById('serviceSelect').addEventListener('change',()=>clearError('serviceSelect','err_service'));
+function fmtPhone(v){const d=v.replace(/\D/g,'').slice(0,10);if(d.length<=3)return d;if(d.length<=6)return d.slice(0,3)+'-'+d.slice(3);return d.slice(0,3)+'-'+d.slice(3,6)+'-'+d.slice(6)}
+['field_phone','m_phone'].forEach(function(id){const el=document.getElementById(id);if(!el)return;el.addEventListener('input',function(){const cur=this.selectionStart,old=this.value;this.value=fmtPhone(old);const diff=this.value.length-old.length;this.setSelectionRange(cur+diff,cur+diff)})});
 
 function closeMobPopup(){document.getElementById('mobOverlay').classList.remove('open');sessionStorage.setItem('zolotoPopup','1')}
 document.getElementById('mobOverlay').addEventListener('click',function(e){if(e.target===this)closeMobPopup()});
