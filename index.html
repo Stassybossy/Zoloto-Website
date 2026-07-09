@@ -19,8 +19,8 @@
 <meta property="og:image" content="https://www.zolotoservices.com/zoloto-handyman.png">
 <link rel="preconnect" href="https://api.web3forms.com">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -382,24 +382,24 @@ body{background:var(--black);color:var(--warm-white);font-family:-apple-system,'
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">First Name</label>
-            <input type="text" name="first_name" id="field_first" class="form-input" placeholder="John">
+            <input type="text" name="first_name" id="field_first" class="form-input" placeholder="John" maxlength="60">
             <span class="form-error-msg" id="err_first">Required</span>
           </div>
           <div class="form-group">
             <label class="form-label">Last Name</label>
-            <input type="text" name="last_name" id="field_last" class="form-input" placeholder="Smith">
+            <input type="text" name="last_name" id="field_last" class="form-input" placeholder="Smith" maxlength="60">
             <span class="form-error-msg" id="err_last">Required</span>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">Phone</label>
-            <input type="tel" name="phone" id="field_phone" class="form-input" placeholder="716-555-0000">
+            <input type="tel" name="phone" id="field_phone" class="form-input" placeholder="716-555-0000" maxlength="20">
             <span class="form-error-msg" id="err_phone">Required</span>
           </div>
           <div class="form-group">
             <label class="form-label">Email</label>
-            <input type="email" name="email" id="field_email" class="form-input" placeholder="you@email.com">
+            <input type="email" name="email" id="field_email" class="form-input" placeholder="you@email.com" maxlength="120">
             <span class="form-error-msg" id="err_email">Valid email required</span>
           </div>
         </div>
@@ -421,7 +421,7 @@ body{background:var(--black);color:var(--warm-white);font-family:-apple-system,'
         </div>
         <div class="form-group">
           <label class="form-label">Project Details</label>
-          <textarea name="details" id="field_details" class="form-textarea" placeholder="Describe the job — size, location, timeline..."></textarea>
+          <textarea name="details" id="field_details" class="form-textarea" maxlength="2000" placeholder="Describe the job — size, location, timeline..."></textarea>
           <span class="form-error-msg" id="err_details">Please describe your project</span>
         </div>
         <div class="form-group">
@@ -440,7 +440,7 @@ body{background:var(--black);color:var(--warm-white);font-family:-apple-system,'
             <option>Other</option>
           </select>
         </div>
-        <button type="submit" class="form-submit" id="submitBtn">Send Request →</button>
+        <input type="text" name="_gotcha" style="display:none!important" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="form-submit" id="submitBtn">Send Request →</button>
         <div class="form-success" id="formSuccess">✓ &nbsp;Request received — Stas will be in touch within 2 hours.</div>
         <p class="form-note">Or call/text: <a href="tel:7169307767">716-930-7767</a> · Mon–Sat 7am–7pm</p>
       </form>
@@ -713,7 +713,7 @@ body{background:var(--black);color:var(--warm-white);font-family:-apple-system,'
 
 <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">↑</button>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="" defer></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous" defer></script>
 <script>
 (function(){
   const map=L.map('serviceAreaMap',{zoomControl:true,scrollWheelZoom:false,attributionControl:true}).setView([43.04,-78.88],10);
@@ -749,20 +749,20 @@ body{background:var(--black);color:var(--warm-white);font-family:-apple-system,'
     <div class="mob-body">
       <form id="mobForm" onsubmit="handleMobSubmit(event)" novalidate>
         <div class="form-row">
-          <div class="form-group"><label class="form-label">First Name</label><input type="text" id="m_first" name="first_name" class="form-input" placeholder="John"><span class="form-error-msg" id="m_err_first">Required</span></div>
-          <div class="form-group"><label class="form-label">Last Name</label><input type="text" id="m_last" name="last_name" class="form-input" placeholder="Smith"><span class="form-error-msg" id="m_err_last">Required</span></div>
+          <div class="form-group"><label class="form-label">First Name</label><input type="text" id="m_first" name="first_name" class="form-input" maxlength="60" placeholder="John"><span class="form-error-msg" id="m_err_first">Required</span></div>
+          <div class="form-group"><label class="form-label">Last Name</label><input type="text" id="m_last" name="last_name" class="form-input" maxlength="60" placeholder="Smith"><span class="form-error-msg" id="m_err_last">Required</span></div>
         </div>
         <div class="form-row">
-          <div class="form-group"><label class="form-label">Phone</label><input type="tel" id="m_phone" name="phone" class="form-input" placeholder="716-555-0000"><span class="form-error-msg" id="m_err_phone">Required</span></div>
-          <div class="form-group"><label class="form-label">Email</label><input type="email" id="m_email" name="email" class="form-input" placeholder="you@email.com"><span class="form-error-msg" id="m_err_email">Valid email required</span></div>
+          <div class="form-group"><label class="form-label">Phone</label><input type="tel" id="m_phone" name="phone" class="form-input" maxlength="20" placeholder="716-555-0000"><span class="form-error-msg" id="m_err_phone">Required</span></div>
+          <div class="form-group"><label class="form-label">Email</label><input type="email" id="m_email" name="email" class="form-input" maxlength="120" placeholder="you@email.com"><span class="form-error-msg" id="m_err_email">Valid email required</span></div>
         </div>
         <div class="form-group">
           <label class="form-label">Service Needed</label>
           <select id="m_service" name="service" class="form-select"><option value="" disabled selected>Select a service...</option><option>Drywall Repair</option><option>Pressure Washing</option><option>Interior Painting/Staining</option><option>Exterior Painting/Staining</option><option>Landscaping</option><option>Honey-Do List</option><option>Furniture Assembly</option><option>General Repairs</option><option>Multiple / Other</option></select>
           <span class="form-error-msg" id="m_err_service">Please select a service</span>
         </div>
-        <div class="form-group"><label class="form-label">Project Details</label><textarea id="m_details" name="details" class="form-textarea" placeholder="Describe the job — size, location, timeline..."></textarea><span class="form-error-msg" id="m_err_details">Please describe your project</span></div>
-        <button type="submit" class="form-submit" id="m_submitBtn">Send Request →</button>
+        <div class="form-group"><label class="form-label">Project Details</label><textarea id="m_details" name="details" class="form-textarea" maxlength="2000" placeholder="Describe the job — size, location, timeline..."></textarea><span class="form-error-msg" id="m_err_details">Please describe your project</span></div>
+        <input type="text" name="_gotcha" style="display:none!important" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="form-submit" id="m_submitBtn">Send Request →</button>
         <div class="form-success" id="m_formSuccess">✓ &nbsp;Request received — Stas will be in touch within 2 hours.</div>
         <p class="form-note">Or call/text: <a href="tel:7169307767">716-930-7767</a> · Mon–Sat 7am–7pm</p>
       </form>
@@ -817,7 +817,7 @@ const stb=document.getElementById('scrollTop');
 window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',window.scrollY>50);stb.classList.toggle('visible',window.scrollY>500)},{passive:true});
 setTimeout(()=>document.querySelectorAll('.hero-bracket').forEach(b=>b.classList.add('in')),800);
 
-const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
+const _zFormStart=Date.now();const ro=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));
 
 function validateField(fieldId,errId,checkFn){const field=document.getElementById(fieldId);const err=document.getElementById(errId);const ok=checkFn(field.value.trim());field.classList.toggle('error',!ok);err.classList.toggle('show',!ok);return ok}

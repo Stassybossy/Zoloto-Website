@@ -16,7 +16,7 @@
 <meta name="geo.placename" content="Kenmore, NY">
 <link rel="preconnect" href="https://api.web3forms.com">
 <link rel="icon" href="zoloto-handyman.png" type="image/png">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha384-t1nt8BQoYMLFN5p42tRAtuAAFQaCQODekUVeKKZrEnEyp4H2R0RHFz0KWpmj7i8g" crossorigin="anonymous">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--gold:#C9A84C;--gold-light:#E8C87A;--gold-dark:#9A7B2F;--black:#0D0D0D;--dark:#161410;--dark2:#1E1B14;--warm-white:#F0EAD6;--warm-gray:#B0A888;--muted:#665F50;--deep-muted:#443E32;--border:#2A2520}
@@ -115,20 +115,20 @@ body{background:var(--black);color:var(--warm-white);font-family:-apple-system,'
       <div class="form-card-sub">Response within 2 hours · No obligation</div>
       <form id="contactForm" onsubmit="handleSubmit(event)" novalidate>
         <div class="form-row">
-          <div class="form-group"><label class="form-label">First Name</label><input type="text" id="field_first" name="first_name" class="form-input" placeholder="John"><span class="form-error-msg" id="err_first">Required</span></div>
-          <div class="form-group"><label class="form-label">Last Name</label><input type="text" id="field_last" name="last_name" class="form-input" placeholder="Smith"><span class="form-error-msg" id="err_last">Required</span></div>
+          <div class="form-group"><label class="form-label">First Name</label><input type="text" id="field_first" name="first_name" maxlength="60" class="form-input" placeholder="John"><span class="form-error-msg" id="err_first">Required</span></div>
+          <div class="form-group"><label class="form-label">Last Name</label><input type="text" id="field_last" name="last_name" maxlength="60" class="form-input" placeholder="Smith"><span class="form-error-msg" id="err_last">Required</span></div>
         </div>
         <div class="form-row">
-          <div class="form-group"><label class="form-label">Phone</label><input type="tel" id="field_phone" name="phone" class="form-input" placeholder="716-555-0000"><span class="form-error-msg" id="err_phone">Required</span></div>
-          <div class="form-group"><label class="form-label">Email</label><input type="email" id="field_email" name="email" class="form-input" placeholder="you@email.com"><span class="form-error-msg" id="err_email">Valid email required</span></div>
+          <div class="form-group"><label class="form-label">Phone</label><input type="tel" id="field_phone" name="phone" maxlength="20" class="form-input" placeholder="716-555-0000"><span class="form-error-msg" id="err_phone">Required</span></div>
+          <div class="form-group"><label class="form-label">Email</label><input type="email" id="field_email" name="email" maxlength="120" class="form-input" placeholder="you@email.com"><span class="form-error-msg" id="err_email">Valid email required</span></div>
         </div>
         <div class="form-group">
           <label class="form-label">Service Needed</label>
           <select id="serviceSelect" name="service" class="form-select"><option value="" disabled selected>Select a service...</option><option>Drywall Repair</option><option>Pressure Washing</option><option>Interior Painting/Staining</option><option>Exterior Painting/Staining</option><option>Landscaping</option><option>Honey-Do List</option><option>Furniture Assembly</option><option>General Repairs</option><option>Multiple / Other</option></select>
           <span class="form-error-msg" id="err_service">Please select a service</span>
         </div>
-        <div class="form-group"><label class="form-label">Project Details</label><textarea id="field_details" name="details" class="form-textarea" placeholder="Tell us about your project..."></textarea><span class="form-error-msg" id="err_details">Please describe your project</span></div>
-        <button type="submit" class="form-submit" id="submitBtn">Send Request →</button>
+        <div class="form-group"><label class="form-label">Project Details</label><textarea id="field_details" name="details" maxlength="2000" class="form-textarea" placeholder="Tell us about your project..."></textarea><span class="form-error-msg" id="err_details">Please describe your project</span></div>
+        <input type="text" name="_gotcha" style="display:none!important" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit" class="form-submit" id="submitBtn">Send Request →</button>
         <div class="form-success" id="formSuccess">✓ Request received — Stas will be in touch within 2 hours.</div>
         <p class="form-note">Or call/text: <a href="tel:7169307767">716-930-7767</a></p>
       </form>
@@ -202,5 +202,7 @@ async function handleSubmit(e){
   try{const res=await fetch('https://api.web3forms.com/submit',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({access_key:'f628206a-08c3-456e-a18e-8338da20445a',subject:'New Quote — Kenmore',from_name:document.getElementById('field_first').value.trim()+' '+document.getElementById('field_last').value.trim(),email:document.getElementById('field_email').value.trim(),phone:document.getElementById('field_phone').value.trim(),service:document.getElementById('serviceSelect').value,message:document.getElementById('field_details').value.trim()})});const data=await res.json();if(data.success){btn.textContent='✓ Sent!';document.getElementById('formSuccess').style.display='block';e.target.reset()}else{throw new Error}}catch{btn.disabled=false;btn.textContent='Send Request →';alert('Something went wrong. Please call 716-930-7767')}
 }
 </script>
-</body>
+<script>
+(function(){function fmtPhone(v){var d=v.replace(/\D/g,'').slice(0,10);if(d.length<=3)return d;if(d.length<=6)return d.slice(0,3)+'-'+d.slice(3);return d.slice(0,3)+'-'+d.slice(3,6)+'-'+d.slice(6)}var el=document.getElementById('field_phone');if(el)el.addEventListener('input',function(){var cur=this.selectionStart,old=this.value;this.value=fmtPhone(old);var diff=this.value.length-old.length;this.setSelectionRange(cur+diff,cur+diff)})})();
+</script></body>
 </html>
